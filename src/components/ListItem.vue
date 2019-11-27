@@ -1,11 +1,19 @@
 <template lang="html">
-  <li>{{country.name}}</li>
+  <li v-on:click="handleClick">{{country.name}}</li>
 </template>
 
 <script>
+
+import { eventBus } from '../main.js'
 export default {
   name: 'list-item',
-  props: ['country']
+  props: ['country'],
+  methods: {
+    handleClick(){
+      // console.log('country', this.country);
+      eventBus.$emit('country-selected', this.country);
+    }
+  }
 }
 </script>
 
